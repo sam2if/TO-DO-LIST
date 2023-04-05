@@ -1,33 +1,33 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-size: 1.5rem;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
 }
 
 body {
-    background: rgb(241, 238, 232);
+  background: rgb(241, 238, 232);
 }
 
 .todo {
-    width: 50%;
-    display: flex;
-    margin: auto;
-    margin-top: 5em;
-    padding: 1em;
-    flex-direction: column;
-    background: white;
-    height: 50vh;
-    justify-content: center;
-    align-content: center;
+  width: 50%;
+  display: flex;
+  margin: auto;
+  margin-top: 5em;
+  padding: 1em;
+  flex-direction: column;
+  background: white;
+  height: 50vh;
+  justify-content: center;
+  align-content: center;
 }
 
 .items {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
 }
 
 .box {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
