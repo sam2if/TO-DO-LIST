@@ -16,7 +16,7 @@ body {
   padding: 1em;
   flex-direction: column;
   background: white;
-  height: 50vh;
+  height: auto;
   justify-content: center;
   align-content: center;
 }
@@ -30,4 +30,25 @@ body {
 .box {
   width: 20px;
   height: 20px;
+}
+
+#edit {
+  display: none;
+}
+
+#trash {
+  display: none;
+}
+
+input {
+  border:none;
+  outline:none;
+}
+input:focus {
+  outline:none
+}
+
+.description {
+  border:none;
+  outline:none;
 }
