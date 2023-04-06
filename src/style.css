@@ -41,14 +41,15 @@ body {
 }
 
 input {
-  border:none;
-  outline:none;
+  border: none;
+  outline: none;
 }
+
 input:focus {
-  outline:none
+  outline: none;
 }
 
 .description {
-  border:none;
-  outline:none;
+  border: none;
+  outline: none;
 }

@@ -1,14 +1,17 @@
 const desc = document.querySelector('.inp');
-const el = document.createElement('div');
 const lists = document.querySelector('.lists');
 
 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 class Task {
-  constructor(desc, complete) {
+  constructor(desc) {
     this.description = desc.value;
-    this.complete = false;
   }
+}
+
+function removed(index) {
+  tasks.splice(index, 1);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function created(task) {
@@ -44,7 +47,7 @@ function created(task) {
     trash.addEventListener('click', () => {
       removed(tasks.indexOf(task));
       el.remove();
-    })
+    });
 
     edit.addEventListener('click', () => {
       const descriptionLabel = el.querySelector('.description');
@@ -52,8 +55,7 @@ function created(task) {
       task.description = descriptionLabel.textContent;
       localStorage.setItem('tasks', JSON.stringify(tasks));
       descriptionLabel.focus();
-    })
-    
+    });
   });
 
   const descriptionLabel = el.querySelector('.description');
@@ -65,9 +67,6 @@ function created(task) {
   lists.appendChild(el);
 }
 
-
-
-
 if (localStorage.getItem('tasks')) {
   tasks.map((task) => {
     created(task);
@@ -76,18 +75,12 @@ if (localStorage.getItem('tasks')) {
 }
 
 function added() {
-  let complete = false;
-  const obj = new Task(desc, complete);
+  const obj = new Task(desc);
   tasks.push(obj);
   localStorage.setItem('tasks', JSON.stringify(tasks));
   created(obj);
   desc.value = '';
   desc.focus();
-}
-
-function removed(index) {
-  const a = tasks.splice(index,1);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 export { tasks, desc, added };
