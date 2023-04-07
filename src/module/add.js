@@ -14,7 +14,7 @@ class Task {
 function removed(index) {
   tasks.splice(index, 1);
   localStorage.setItem('tasks', JSON.stringify(tasks));
-  for (let i = index; i < tasks.length; i++) {
+  for (let i = index; i < tasks.length; i += 1) {
     tasks[i].index = i;
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
@@ -81,13 +81,13 @@ if (localStorage.getItem('tasks')) {
 }
 
 function added() {
-  let complete = false;
+  const complete = false;
   let index;
   const obj = new Task(desc, complete, index);
+
   if (desc.value === '') {
-    alert("please add a task") 
-  }
-  else {
+    alert('please add a task');
+  } else {
     tasks.push(obj);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     created(obj);
