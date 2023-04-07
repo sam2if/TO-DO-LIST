@@ -84,11 +84,16 @@ function added() {
   let complete = false;
   let index;
   const obj = new Task(desc, complete, index);
-  tasks.push(obj);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-  created(obj);
-  desc.value = '';
-  desc.focus();
+  if (desc.value === '') {
+    alert("please add a task") 
+  }
+  else {
+    tasks.push(obj);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    created(obj);
+    desc.value = '';
+    desc.focus();
+  }
 }
 
 export { tasks, desc, added };
