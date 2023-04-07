@@ -1,6 +1,7 @@
 const desc = document.querySelector('.inp');
 const lists = document.querySelector('.lists');
-
+const clear = document.querySelector('.clearall');
+let complete = false;
 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 class Task {
@@ -43,6 +44,18 @@ function created(task) {
   </div>
   <hr>`;
 
+  const checked = el.querySelector('.box');
+
+  checked.addEventListener('click', () =>  {
+    if (checked.checked) {
+      task.complete = true;
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    } else {
+      task.complete = false;
+     localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+  })
+
   const removeBtn = el.querySelector('.removed');
   removeBtn.addEventListener('click', () => {
     const edit = el.querySelector('#edit');
@@ -81,7 +94,6 @@ if (localStorage.getItem('tasks')) {
 }
 
 function added() {
-  const complete = false;
   let index;
   const obj = new Task(desc, complete, index);
 
@@ -96,4 +108,26 @@ function added() {
   }
 }
 
+function removeall() {
+  const checkboxes = document.querySelectorAll('.box:checked');
+  for (let i = 0; i < checkboxes.length; i++) {
+    const checkbox = checkboxes[i];
+    const parent = checkbox.parentElement.parentElement;
+    const index = tasks.findIndex((task) => task.index === parseInt(parent.dataset.index));
+    tasks.splice(i, 1);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    parent.remove();
+  }
+  for (let i = 0; i < tasks.length; i++) {
+    tasks[i].index = i;
+  }
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+
+clear.addEventListener('click', removeall);
+ 
+
 export { tasks, desc, added };
+
+
