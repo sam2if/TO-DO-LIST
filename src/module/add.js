@@ -118,7 +118,6 @@ function removeall() {
   }
 }
 
-
 clear.addEventListener('click', removeall);
  
 
