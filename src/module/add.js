@@ -2,7 +2,7 @@ const desc = document.querySelector('.inp');
 const lists = document.querySelector('.lists');
 const clear = document.querySelector('.clearall');
 let complete = false;
-const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 class Task {
   constructor(desc, complete, index) {
@@ -25,7 +25,7 @@ function created(task) {
   const el = document.createElement('div');
   el.innerHTML = `<div class="items">
     <div class="for1">
-        <input class="box" type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+        <input class="box" type="checkbox" id="vehicle1" name="vehicle1">
         <label class="description" contenteditable>${task.description}</label>
     </div>
     <div class="dots">
@@ -109,19 +109,13 @@ function added() {
 }
 
 function removeall() {
-  const checkboxes = document.querySelectorAll('.box:checked');
-  for (let i = 0; i < checkboxes.length; i++) {
-    const checkbox = checkboxes[i];
-    const parent = checkbox.parentElement.parentElement;
-    const index = tasks.findIndex((task) => task.index === parseInt(parent.dataset.index));
-    tasks.splice(i, 1);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    parent.remove();
-  }
-  for (let i = 0; i < tasks.length; i++) {
-    tasks[i].index = i;
-  }
+  tasks = tasks.filter((element, index) => element.complete === false);
   localStorage.setItem('tasks', JSON.stringify(tasks));
+  window.location.reload();
+  for (let i = 0; i < tasks.length; i += 1) {
+    tasks[i].index = i + 1;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
 }
 
 
