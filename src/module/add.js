@@ -7,7 +7,7 @@ class Task {
   constructor(desc, complete, index) {
     this.description = desc.value;
     this.complete = false;
-    this.index = tasks.length;
+    this.index = tasks.length + 1;
   }
 }
 
@@ -15,7 +15,7 @@ function removed(index) {
   tasks.splice(index, 1);
   localStorage.setItem('tasks', JSON.stringify(tasks));
   for (let i = index; i < tasks.length; i += 1) {
-    tasks[i].index = i;
+    tasks[i].index = i + 1;
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 }
