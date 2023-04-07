@@ -4,14 +4,20 @@ const lists = document.querySelector('.lists');
 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 class Task {
-  constructor(desc) {
+  constructor(desc, complete, index) {
     this.description = desc.value;
+    this.complete = false;
+    this.index = tasks.length;
   }
 }
 
 function removed(index) {
   tasks.splice(index, 1);
   localStorage.setItem('tasks', JSON.stringify(tasks));
+  for (let i = index; i < tasks.length; i++) {
+    tasks[i].index = i;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
 }
 
 function created(task) {
@@ -75,7 +81,9 @@ if (localStorage.getItem('tasks')) {
 }
 
 function added() {
-  const obj = new Task(desc);
+  let complete = false;
+  let index;
+  const obj = new Task(desc, complete, index);
   tasks.push(obj);
   localStorage.setItem('tasks', JSON.stringify(tasks));
   created(obj);
